@@ -1,0 +1,7 @@
+{
+  "name": "EA11_IdeasAI",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
