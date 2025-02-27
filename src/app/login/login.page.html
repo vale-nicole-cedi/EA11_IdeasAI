@@ -10,38 +10,38 @@
       <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
 
-<form (ngSubmit) "onSubmit()" #loginForm="ngForm">
-  <div class="ab-6">
-    <label for="email">Email address</label>
-    <input #emailInput placeholder="email" type="email" id="email" name="email" ngModel/>
-    <div *ngIf="email.invalid && email.touched">Please enter a valid email address</div>
-  </div>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="mb-6">
+      <label for="email">Email address</label>
+      <input #emailInput="ngModel" placeholder="email" type="email" id="email" name="email" ngModel required #email="ngModel"/>
+      <div *ngIf="emailInput.invalid && emailInput.touched">Please enter a valid email address</div>
+    </div>
 
-  <div class="ab-6">
-    <label for="password">Password</label>
-    <input #passwordInput placeholder="password" type="password" id="password" name="password" ngModel required #password ="ngModel"/>
-  </div>
+    <div class="mb-6">
+      <label for="password">Password</label>
+      <input #passwordInput="ngModel" placeholder="password" type="password" id="password" name="password" ngModel required #password="ngModel"/>
+    </div>
 
-  <button type=submit class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-    [disabled]="loginForm.invalid">
+    <button type="submit" class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+      [disabled]="loginForm.invalid">
+      <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+        Log In
+      </span>
+    </button>
+  </form>
+
+  <button (click)="onReset()"
+    class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
     <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-      Log In
+      Go to reset
     </span>
   </button>
-</form>
 
-<button (click) ="onReset()"
-  class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-  <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-    Go to reset
-  </span>
-</button>
-
-<button (click)="onSignUp"
-  class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-  <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-    Go To Sign Up
-  </span>
+  <button (click)="onSignup()"
+    class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+    <span class="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+      Go To Sign Up
+    </span>
+  </button>
 </ion-content>
