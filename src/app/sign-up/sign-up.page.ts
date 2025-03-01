@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { IonButton } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,30 +16,37 @@ import { Router } from '@angular/router';
 })
 export class SignUpPage implements OnInit {
 
-  constructor(private alertController: AlertController, private router: Router) { }
-
   ngOnInit() {
   }
 
-  async onSubmit() {
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
+  email: string = '';
+  password: string = '';
 
-    if(this.validateEmail(email) && password){
-      const alert = await this.alertController.create({
-        header: 'Sign Up Success',
-        message: 'You have signed up successfully',
-        buttons: ['OK'],
-      });
-      await alert.present();
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Sign Up Failed',
-        message: 'Please enter a valid email and password',
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
+  constructor(
+    private alertController: AlertController, 
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
+
+  async onSubmit() {
+   try{
+    await this.authService.register(this.email, this.password);
+    const alert = await this.alertController.create({
+      header: 'Success',
+      message: 'You have successfully registered',
+      buttons: ['OK']
+    });
+    await alert.present();
+    this.router.navigate(['/login']);
+   } catch (error) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'An error occurred while trying to register',
+      buttons: ['OK']
+    });
+    await alert.present();
+   }
   }
 
   validateEmail(email: string): boolean {
@@ -47,7 +55,7 @@ export class SignUpPage implements OnInit {
   }
 
   onSignUp() {
-    this.router.navigateByUrl("login");
+    this.router.navigateByUrl("sign-up");
   }
 
 }
